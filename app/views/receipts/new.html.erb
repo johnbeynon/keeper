@@ -9,8 +9,8 @@
 <%= f.label :amount %>
 <%= f.text_field :amount %>
 
-<%= f.label :image %>
-<%= f.file_field :image %>
+<%= f.label :images %>
+<%= f.file_field :images, multiple: true %>
 
  <div class="actions">
     <%= f.submit %>

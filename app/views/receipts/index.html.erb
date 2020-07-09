@@ -4,7 +4,7 @@
 <ul>
 <% @receipts.each do |receipt| %>
 <li>
-  <%= receipt.tray.name %> <%= receipt.transaction_date %> <%= number_to_currency(receipt.amount) %>
+  <%= receipt.tray.name %> <%= receipt.transaction_date %> <%= number_to_currency(receipt.amount) %> <%= link_to 'Receipt', receipt_path(receipt.id) %>
 </li>
 <% end %>
 </ul>
