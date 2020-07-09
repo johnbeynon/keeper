@@ -2,11 +2,6 @@ class SessionsController < ApplicationController
   skip_before_action :require_login
   before_action :ensure_email_permitted, only: :omniauth
 
-  PERMITTED_EMAILS = %w(
-    john.beynon@gmail.com
-    jbeynon@salesforce.com
-  )
-
   def omniauth
     @user = User.from_omniauth(auth)
     if @user.save
@@ -31,8 +26,7 @@ class SessionsController < ApplicationController
   end
 
   def ensure_email_permitted
-  
-    unless PERMITTED_EMAILS.include? auth.info.email
+    unless ENV['PERMITTED_USERS'].include? auth.info.email
       flash[:error] = "You don't have access, speak to your family"
       redirect_to login_path # halts request cycle
     end
