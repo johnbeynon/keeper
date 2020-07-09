@@ -1,3 +1,16 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+ 
+  resources :receipts
+  resources :trays
+  resources :invitations
+  
+  root "receipts#index"
+  
+  get '/home' => 'receipts#index'
+  get '/login' => redirect('/auth/google_oauth2')
+  get '/signup' => 'users#new'
+  get '/goodbye' => 'sessions#goodbye'
+  delete '/logout' => 'sessions#destroy' 
+
+  get '/auth/:provider/callback' => 'sessions#omniauth'
 end

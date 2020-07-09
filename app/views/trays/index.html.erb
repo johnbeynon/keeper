@@ -1,0 +1,10 @@
+<h1>Your Trays</h1>
+
+<%= link_to "New", new_tray_path %>
+<ul>
+<% @permissions.each do |permission| %>
+<li>
+  <%= link_to permission.tray.name, tray_path(permission.tray.id) %> <%=  permission.access %>
+</li>
+<% end %>
+</ul>

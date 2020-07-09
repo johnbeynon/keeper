@@ -1,24 +1,8 @@
-# README
+# Readme
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+Keeper keeps things for you, primarily receipts for purchases.
 
-Things you may want to cover:
+## The Idea
 
-* Ruby version
+A Keeper instance is deployed for a single family. A Family has many 'trays' (in/out trays) and receipts are added to trays. A family member gets their own tray where they can store receipts privately but additional shared trays can be created to share with the rest of the family.
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...

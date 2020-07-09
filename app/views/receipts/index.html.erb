@@ -1,0 +1,10 @@
+<h1>Receipts</h1>
+
+<%= link_to "New", new_receipt_path %>
+<ul>
+<% @receipts.each do |receipt| %>
+<li>
+  <%= receipt.tray.name %> <%= receipt.transaction_date %> <%= number_to_currency(receipt.amount) %>
+</li>
+<% end %>
+</ul>

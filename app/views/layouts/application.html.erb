@@ -11,5 +11,13 @@
 
   <body>
     <%= yield %>
+    
+    <ul>
+      <% if logged_in? %>
+        <li><%= current_user.user_name %></li>
+        <li><%= link_to "Trays", trays_path %></li>
+        <li><a class="nav-link" data-method="delete" href="/logout">Logout</a></li>
+      <% end %>
+    </ul>
   </body>
 </html>

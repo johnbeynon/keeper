@@ -1,0 +1,14 @@
+<h1>Receipts in Tray</h1>
+
+<%= link_to "Add Receipt", new_receipt_path %>
+<% if @receipts.present? %>
+  <ul>
+  <% @receipts.each do |receipt| %>
+  <li>
+    <%= receipt.tray.name %> <%= receipt.transaction_date %> <%= number_to_currency(receipt.amount) %>
+  </li>
+  <% end %>
+  </ul>
+<% else %>
+No receipts here!
+<% end %>
