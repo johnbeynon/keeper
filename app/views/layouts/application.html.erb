@@ -10,6 +10,12 @@
   </head>
 
   <body>
+    <h1>Keeper</h1>
+      <% if logged_in? %>
+      <ul>
+        <li><%= link_to 'Home', root_path %></li>
+      </ul>
+      <% end %>
     <%= yield %>
     
     <ul>

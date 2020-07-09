@@ -4,11 +4,15 @@ class TraysController < ApplicationController
   end
 
   def show
-    @receipts = current_user.trays.find(params[:id]).receipts
+    @tray = current_user.trays.find(params[:id])
+  end
+
+  def new
+    @tray = Tray.new
   end
 
   def create
-    @receipt = Receipt.new(receipt_params)
+    @tray = Receipt.new(receipt_params)
     if @receipt.save
       redirect_to receipts_path
     else
@@ -16,7 +20,7 @@ class TraysController < ApplicationController
     end
    end
 
-  def receipt_params
-    params.require(:receipt).permit(:tray_id, :transaction_date, :amount, images: [])
+  def tray_params
+    params.require(:tray).permit(:name)
   end
 end

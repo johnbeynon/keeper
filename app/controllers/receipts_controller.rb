@@ -1,6 +1,10 @@
 class ReceiptsController < ApplicationController
   def index
-    @receipts = current_user.receipts.all
+    if params[:tray_id]
+      @receipts = current_user.trays.find(params[:tray_id]).receipts
+    else
+      @receipts = current_user.receipts.all
+    end
   end
 
   def new
