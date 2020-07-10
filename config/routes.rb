@@ -15,4 +15,6 @@ Rails.application.routes.draw do
   post '/incoming' => 'incoming#create'
 
   get '/auth/:provider/callback' => 'sessions#omniauth'
+
+  mount ActionCable.server => '/cable'
 end

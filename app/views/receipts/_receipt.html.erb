@@ -1,0 +1,3 @@
+<li>
+<%= link_to receipt.tray.name, receipts_path(tray_id: receipt.tray.id) %> <%= receipt.transaction_date %> <%= number_to_currency(receipt.amount) %> <%= link_to 'View Receipt', receipt_path(receipt.id) %>
+</li>

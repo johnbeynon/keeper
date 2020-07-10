@@ -1,10 +1,8 @@
 <h2>Receipts</h2>
 
 <%= link_to "Add New Receipt", new_receipt_path %>
-<ul>
+<ul id="receipts">
 <% @receipts.each do |receipt| %>
-<li>
-  <%= link_to receipt.tray.name, receipts_path(tray_id: receipt.tray.id) %> <%= receipt.transaction_date %> <%= number_to_currency(receipt.amount) %> <%= link_to 'View Receipt', receipt_path(receipt.id) %>
-</li>
+  <%= render partial: "receipt", locals: {receipt: receipt} %>
 <% end %>
 </ul>
