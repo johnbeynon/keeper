@@ -1,8 +1,8 @@
 <h2>Receipts</h2>
 
 <%= link_to "Add New Receipt", new_receipt_path %>
-<ul id="receipts">
+<div class="card-deck" id="receipts">
 <% @receipts.each do |receipt| %>
   <%= render partial: "receipt", locals: {receipt: receipt} %>
 <% end %>
-</ul>
+</div>

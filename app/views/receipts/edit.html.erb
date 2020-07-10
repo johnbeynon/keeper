@@ -1,4 +1,4 @@
-<h2>Store a new receipt</h2>
+<h2>Editing Receipt</h2>
 
 <%= form_for(@receipt) do |f| %>
 
@@ -16,6 +16,7 @@
 
  <div class="actions">
     <%= f.submit %>
+    <%= link_to 'Delete', receipt_path(@receipt), method: 'delete' %>
   </div>
 
 <% end %>

@@ -1,3 +1,15 @@
-<li>
-<%= link_to receipt.tray.name, receipts_path(tray_id: receipt.tray.id) %> <%= receipt.transaction_date %> <%= number_to_currency(receipt.amount) %> <%= link_to 'View Receipt', receipt_path(receipt.id) %>
-</li>
+<div class="card">
+  <img class="card-img-top" data-src="holder.js/100x180" alt="Card image cap" style="height: 180px; width: 100%; display: block;" data-holder-rendered="true">
+  <div class="card-body">
+    <h5 class="card-title">Card title</h5>
+    <p class="card-text">
+       <%= number_to_currency(receipt.amount) %> 
+    </p>
+    <%= link_to 'Edit Receipt', edit_receipt_path(receipt.id), class: 'card-link' %>
+  </div>
+  <div class="card-footer">
+      <small class="text-muted"><%= receipt.transaction_date %></small>
+    </div>
+</div>
+
+<!%= link_to receipt.tray.name, receipts_path(tray_id: receipt.tray.id) %> 

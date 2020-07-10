@@ -1,8 +1,7 @@
 Rails.application.routes.draw do
  
-  resources :receipts
+  resources :receipts, except: :show
   resources :trays
-  resources :invitations
   
   root "receipts#index"
   

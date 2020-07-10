@@ -27,6 +27,7 @@ gem 'redis', '~> 4.0'
 
 gem 'omniauth-google-oauth2'
 gem "aws-sdk-s3", require: false
+gem 'discard'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
