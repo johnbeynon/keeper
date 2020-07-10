@@ -28,10 +28,10 @@
           Trays
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <a class="dropdown-item" href="#">Action</a>
-          <a class="dropdown-item" href="#">Another action</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Something else here</a>
+          <%= link_to "All", receipts_path, class: 'dropdown-item' %>
+          <% current_user.trays.each do |tray| %>
+            <%= link_to tray.name, receipts_path(tray_id: tray.id), class: 'dropdown-item' %>
+          <% end %>
         </div>
       </li>
       <li class="nav-item dropdown">

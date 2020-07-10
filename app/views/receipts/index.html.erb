@@ -1,6 +1,15 @@
-<h2>Receipts</h2>
-
-<%= link_to "Add New Receipt", new_receipt_path %>
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+<h2>
+<% if @tray.present? %>
+  Receipts > <%= @tray.name %>
+<% else %>
+  All Receipts
+<% end %>
+</h2>
+<div class="btn-toolbar mb-2 mb-md-0">
+  <%= link_to "Add New Receipt", new_receipt_path, class: 'btn btn-primary btn-sm' %>
+</div>
+</div>
 <div class="card-deck" id="receipts">
 <% @receipts.each do |receipt| %>
   <%= render partial: "receipt", locals: {receipt: receipt} %>

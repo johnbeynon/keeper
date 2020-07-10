@@ -1,7 +1,8 @@
 class ReceiptsController < ApplicationController
   def index
     if params[:tray_id]
-      @receipts = current_user.trays.find(params[:tray_id]).receipts.kept
+      @tray = current_user.trays.find(params[:tray_id])
+      @receipts = @tray.receipts.kept
     else
       @receipts = current_user.receipts.kept
     end
