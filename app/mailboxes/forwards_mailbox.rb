@@ -1,6 +1,11 @@
 class ForwardsMailbox < ApplicationMailbox
   def process
-    Receipt.create(transaction_date: Date.today, tray: Tray.first, images: attachments.map{ |a| a[:blob] })
+    Receipt.create(
+      transaction_date: Date.today, 
+      tray: Tray.first, 
+      creator: User.first,
+      images: attachments.map{ |a| a[:blob] }
+    )
   end
 
   def attachments
