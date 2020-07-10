@@ -1,0 +1,12 @@
+<h2>New Tray</h2>
+
+<%= form_for(@tray) do |f| %>
+
+<%= f.label :name %>
+<%= f.text_field :name %>
+
+ <div class="actions">
+    <%= f.submit %>
+  </div>
+
+<% end %>

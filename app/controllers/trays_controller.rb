@@ -12,11 +12,12 @@ class TraysController < ApplicationController
   end
 
   def create
-    @tray = Receipt.new(receipt_params)
-    if @receipt.save
-      redirect_to receipts_path
+    @tray = Tray.new(tray_params)
+    if @tray.save
+      current_user.permissions.create(access:'readwrite', tray: @tray)
+      redirect_to trays_path
     else
-      raise @receipt.errors.inspect
+      raise @receipt.trays.inspect
     end
    end
 

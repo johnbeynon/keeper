@@ -12,6 +12,11 @@ AWS_ACCESS_KEY_ID
 AWS_SECRET_ACCESS_KEY
 AWS_REGION
 AWS_BUCKET
+PERMITTED_USERS A comma seperated list of email addresses permitted to use Google auth to access this instance.
+PERMITTED_SENDERS A comma seperated list of email addresses permitted to send receipts via email
 
 
 
+
+
+MO

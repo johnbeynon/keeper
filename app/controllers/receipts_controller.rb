@@ -16,7 +16,7 @@ class ReceiptsController < ApplicationController
   end
 
   def create
-    @receipt = Receipt.new(receipt_params)
+    @receipt = Receipt.new(receipt_params.merge(creator: current_user))
     if @receipt.save
       redirect_to receipts_path
     else
