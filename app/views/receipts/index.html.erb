@@ -10,7 +10,8 @@
   <%= link_to "Add New Receipt", new_receipt_path, class: 'btn btn-primary btn-sm' %>
 </div>
 </div>
-<div class="card-deck" id="receipts">
+
+<div class="row" id="receipts">
 <% @receipts.each do |receipt| %>
   <%= render partial: "receipt", locals: {receipt: receipt} %>
 <% end %>
