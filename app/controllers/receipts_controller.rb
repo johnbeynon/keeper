@@ -29,7 +29,10 @@ class ReceiptsController < ApplicationController
     @receipt = current_user.receipts.find(params[:id])
     if @receipt.update receipt_params
       redirect_to receipt_path(@receipt.id)
-   end
+    else
+      raise @receipt.errors.inspect
+    end
+
   end
 
   def destroy

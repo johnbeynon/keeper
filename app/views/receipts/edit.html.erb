@@ -17,7 +17,11 @@
 <ul>
   <% @receipt.images.each do |file| %>
     <li>
+    <% if file.previewable? %>
       <%= image_tag file.preview(resize_to_limit: [100, 100]) %>
+    <% else %>
+      <%= link_to "View", file %>
+    <% end %>
     </li>
   <% end %>
 </ul>
