@@ -6,10 +6,15 @@
     <p class="card-text">
        <%= number_to_currency(receipt.amount) %> 
     </p>
-    <%= link_to 'Edit Receipt', edit_receipt_path(receipt.id), class: 'card-link' %>
+    <%= link_to edit_receipt_path(receipt.id) do %>
+      <span class="material-icons">
+        edit
+      </span>
+    <% end %>
+    
   </div>
   <div class="card-footer">
-      <small class="text-muted"><%= receipt.transaction_date %></small>
+      <small class="text-muted"><%= receipt.transaction_date || receipt.created_at %></small>
     </div>
 </div>
 </div>
