@@ -1,8 +1,14 @@
-<div class="col-lg-2 col-md-3 col-5" style="margin-bottom: 20px">
+<div class="col mb-4" style="margin-bottom: 20px">
 <div class="card">
-  <img class="card-img-top" data-src="holder.js/100x180" alt="Card image cap" style="height: 180px; width: 100%; display: block;" data-holder-rendered="true">
+<% if receipt.images.first && receipt.images.first.variable? %>
+  <%= image_tag receipt.images.first.variant(resize_to_limit: [200, 200]), class: 'card-img-top'   %>
+<% elsif receipt.images.first && receipt.images.first.previewable? %>
+  <%= image_tag receipt.images.first.preview(resize_to_limit: [200, 200]), class: 'card-img-top'   %>
+<% end %>
   <div class="card-body">
-    <h5 class="card-title">Card title</h5>
+    <%= link_to receipt.tray.name, receipts_path(tray_id: receipt.tray.id), class: 'badge badge-info' %>
+  
+    <h5 class="card-title">Merchant here...</h5>
     <p class="card-text">
        <%= number_to_currency(receipt.amount) %> 
     </p>
@@ -14,8 +20,8 @@
     
   </div>
   <div class="card-footer">
-      <small class="text-muted"><%= receipt.transaction_date || receipt.created_at %></small>
-    </div>
+    <small class="text-muted"><%= time_ago_in_words(receipt.date) %> ago</small>
+  </div>
 </div>
 </div>
 <!%= link_to receipt.tray.name, receipts_path(tray_id: receipt.tray.id) %> 
