@@ -11,8 +11,6 @@ Rails.application.routes.draw do
   get '/goodbye' => 'sessions#goodbye'
   delete '/logout' => 'sessions#destroy' 
 
-  post '/incoming' => 'incoming#create'
-
   get '/auth/:provider/callback' => 'sessions#omniauth'
 
   mount ActionCable.server => '/cable'

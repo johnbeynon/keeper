@@ -6,6 +6,9 @@ class User < ApplicationRecord
 
   after_create :create_tray
 
+  PERMITTED_SENDERS = ENV['PERMITTED_SENDERS'].split
+  PERMITTED_USERS = ENV['PERMITTED_USERS'].split
+
   def self.from_omniauth(auth)
     where(email: auth.info.email).first_or_initialize do |user|
       user.user_name = auth.info.name

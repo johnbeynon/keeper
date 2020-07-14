@@ -1,11 +1,19 @@
 class ForwardsMailbox < ApplicationMailbox
   def process
-    Receipt.create(
-      transaction_date: Date.today, 
-      tray: Tray.first, 
-      creator: User.first,
-      images: attachments.map{ |a| a[:blob] }
-    )
+    if permitted_sender?
+      Receipt.create(
+        transaction_date: Date.today, 
+        tray: creator.tray.first, 
+        creator: creator,
+        images: attachments.map{ |a| a[:blob] }
+      )
+    end
+  end
+
+  private
+
+  def permitted_sender?
+    (User::PERMITTED_USERS.concat User::PERMITTED_SENDERS).include? mail.from
   end
 
   def attachments
@@ -17,5 +25,13 @@ class ForwardsMailbox < ApplicationMailbox
       )
       { original: attachment, blob: blob }
     end
+  end
+
+  def creator
+    @forwarder || User.first
+  end
+
+  def forwarder
+    @forwarder ||= User.find_by(email: mail.from)
   end
 end
