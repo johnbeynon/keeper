@@ -8,6 +8,7 @@ A Keeper instance is deployed for a single family. Each member gets their own tr
 
 ## Configuration
 
+```
 AWS_ACCESS_KEY_ID (production only)
 AWS_SECRET_ACCESS_KEY (production only)
 AWS_REGION (production only)
@@ -16,6 +17,7 @@ GOOGLE_CLIENT_ID
 GOOGLE_CLIENT_SECRET
 PERMITTED_USERS A comma seperated list of email addresses permitted to use Google auth to access this instance.
 PERMITTED_SENDERS A comma seperated list of email addresses permitted to send receipts via email - this is used in addition to PERMITTED_USERS who can by default email the Keeper instance.
+```
 
 ### MailGun for creating receipts via email
 
@@ -27,13 +29,17 @@ You may also find that your printer/scanner can scan directly to an email addres
 
 Dependencies:
 
-* Postgresl
+* Postgresql
 * Redis
 * ImageMagick (brew install imagemagic)
 * Poppler (brew install poppler)
 
 ## Google Oauth
 You'll need to configure a Google project and an Oauth client via https://console.developers.google.com/. Oauth is configured from the Credentials option on the left menu. From the 'Create credentials' button choose 'Oauth client ID' and choose web application. Use `http://localhost:5000/auth/google_oauth2/callback` as the authorised redirect URI. NOTE: Enter the callback URL and make sure you click the save button (that caught me out). Create a second set of credentials for production. Set the client ID and client secret in `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in your `.env` file.
+
+## Receipts via email
+
+Running locally you can send an email to the app by visiting `http://localhost:5000/rails/conductor/action_mailbox/inbound_emails`
 
 ## Running
 
