@@ -2,7 +2,7 @@ class ForwardsMailbox < ApplicationMailbox
   def process
     logger.info("Processing email from #{mail.envelope_from}")
     if permitted_sender?
-      logger.info("Accepted email from #{mail.envelope_from}"ß)
+      logger.info("Accepted email from #{mail.envelope_from}")
       Receipt.create(
         transaction_date: Date.today, 
         tray: creator.tray.first, 
