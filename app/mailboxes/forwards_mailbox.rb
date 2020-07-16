@@ -1,7 +1,8 @@
 class ForwardsMailbox < ApplicationMailbox
   def process
-    logger.info("Processing email from #{mail.from}")
+    logger.info("Processing email from #{mail.envelope_from}")
     if permitted_sender?
+      logger.info("Accepted email from #{mail.envelope_from}"ß)
       Receipt.create(
         transaction_date: Date.today, 
         tray: creator.tray.first, 
@@ -9,8 +10,7 @@ class ForwardsMailbox < ApplicationMailbox
         images: attachments.map{ |a| a[:blob] }
       )
     else
-      logger.info("Rejected email from #{mail.from}")
-      raise mail.from.inspect
+      logger.info("Rejected email from #{mail.envelope_from}")
     end
   end
 
