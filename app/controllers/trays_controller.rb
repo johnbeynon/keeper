@@ -11,6 +11,10 @@ class TraysController < ApplicationController
     @tray = Tray.new
   end
 
+  def edit
+    @tray = current_user.trays.find(params[:id])
+  end
+
   def create
     @tray = Tray.new(tray_params)
     if @tray.save

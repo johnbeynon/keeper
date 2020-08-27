@@ -30,6 +30,8 @@
           <% current_user.trays.each do |tray| %>
             <%= link_to tray.name, receipts_path(tray_id: tray.id), class: 'dropdown-item' %>
           <% end %>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#">Create new tray</a>
         </div>
       </li>
       <li class="nav-item dropdown">

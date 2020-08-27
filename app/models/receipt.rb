@@ -3,7 +3,10 @@ class Receipt < ApplicationRecord
 
   belongs_to :creator, class_name: 'User', foreign_key: 'created_by'
   belongs_to :tray
+  belongs_to :merchant 
+
   has_many_attached :images
+  
   after_create :broadcast
 
   def broadcast

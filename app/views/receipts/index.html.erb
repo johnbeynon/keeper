@@ -2,11 +2,16 @@
 <h2>
 <% if @tray.present? %>
   <%= I18n.t 'receipts' %> > <%= @tray.name %>
+<% elsif @merchant.present? %>
+  <%= I18n.t 'receipts' %> > <%= @merchant.name %>
 <% else %>
   All Receipts
 <% end %>
 </h2>
 <div class="btn-toolbar mb-2 mb-md-0">
+  <% if @tray %>
+    <%= link_to "Edit Tray", edit_tray_path(@tray), class: 'btn btn-primary btn-sm' %>
+  <% end %>
   <%= link_to "Add New Receipt", new_receipt_path, class: 'btn btn-primary btn-sm' %>
 </div>
 </div>

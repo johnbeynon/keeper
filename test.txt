@@ -1,0 +1,49 @@
+=== johnb@heroku.com Apps
+boiling-sierra-21208
+calm-fjord-57249
+creds-for-joe
+csgnotes-schema
+flyinfish-eu (eu)
+for-al
+guildfordchildminder-staging (eu)
+help-localhost-oauth-sekrets
+heroku-support-stack-conf-test
+heroku-supportbar
+jb-alexa (eu)
+jb-apollo-play
+jb-blog-site
+jb-geocode
+jb-markdownizer-docker
+jb-mono-support-prod
+jb-mono-support-staging
+jb-static-prod
+jb-static-staging
+jb-test-app
+johns-canvas
+lametric-heroku-status
+lametric-heroku-status-docker
+lametric-jb (eu)
+modelyachting-prod-eu (eu)
+modelyachting-staging-eu (eu)
+modelyachting-staging-eu-pr-1 (eu)
+murmuring-tor-94004
+myboatinglog (eu)
+myboatinglog-staging (eu)
+mysterious-bastion-57101
+patchlink
+pipelines-demo
+pipelines-demo-prod
+rails6-actionmailbox-demo
+rugged-sequoia-21374
+serene-bastion-2405
+sleepy-eyrie-10542
+stash-api-staging (eu)
+support-mlt
+support-notes-slack
+support-orgh-creds
+whispering-falls-15614
+
+=== Collaborated Apps
+guildfordchildminder  john@beynon.org.uk
+jb-keeper-prod (eu)   john.beynon@gmail.com
+test-app-jb-2         john@beynon.org.uk

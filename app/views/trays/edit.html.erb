@@ -1,0 +1,10 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
+<h2>
+  Editing Tray: <%= @tray.name %>
+</h2>
+
+</div>
+
+<% @tray.permissions.each do |permission| %>
+  <%= permission.user.user_name %>(<%= permission.user.email %>) - <%= permission.access %><br />
+<% end %>
