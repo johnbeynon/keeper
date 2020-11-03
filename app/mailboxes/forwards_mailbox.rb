@@ -4,12 +4,18 @@ class ForwardsMailbox < ApplicationMailbox
     if permitted_sender?
       logger.info("Accepted email from #{mail.from.first}")
       logger.info("Creator: #{creator.email}")
-      Receipt.create(
+      @receipt = Receipt.new(
         transaction_date: Date.today, 
         tray: creator.trays.first, 
         creator: creator,
         images: attachments.map{ |a| a[:blob] }
       )
+      if @receipt.save
+        logger.info("Receipt created #{@receipt.id} by #{creator.email}")
+      else
+        logger.info("Receipt was not created")
+        puts @receipt.errors
+      end
     else
       logger.info("Rejected email from #{mail.from.first}")
     end
