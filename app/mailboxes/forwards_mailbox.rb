@@ -14,7 +14,7 @@ class ForwardsMailbox < ApplicationMailbox
         logger.info("Receipt created #{@receipt.id} by #{creator.email}")
       else
         logger.info("Receipt was not created")
-        puts @receipt.errors
+        puts @receipt.errors.full_messages
       end
     else
       logger.info("Rejected email from #{mail.from.first}")
