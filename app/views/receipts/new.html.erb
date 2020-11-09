@@ -17,10 +17,10 @@
           <label class="form-check-label" for="gridRadios1">
             Existing
           </label>
-          <%= f.select(:merchant_id, Merchant.all.collect {|t| [ t.name, t.id ] }, {}, {class: 'form-control'})%>
+          <%= f.select(:merchant_id, @merchants.collect {|t| [ t.name, t.id ] }, {}, {class: 'form-control', disabled: @merchants.present? ? false : true })%>
         </div>
         <div class="form-check">
-          <input class="form-check-input" type="radio" name="receipt[merchant]" id="gridRadios2" value="new">
+          <input class="form-check-input" type="radio" name="receipt[merchant]" id="gridRadios2" value="new" <% if !@merchants.present? %>checked<% end %>>
           <label class="form-check-label" for="gridRadios2">
             Add New
           </label>

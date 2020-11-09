@@ -13,6 +13,7 @@ class ReceiptsController < ApplicationController
 
   def new
     @receipt = Receipt.new
+    @merchants = Merchant.all
   end
 
   def edit
@@ -37,11 +38,14 @@ class ReceiptsController < ApplicationController
 
   def update
     @receipt = current_user.receipts.find(params[:id])
-    if @receipt.update receipt_params
-      redirect_to receipt_path(@receipt.id)
+    if receipt_params[:merchant] == 'new'
+      @merchant = Merchant.create(name: receipt_params[:merchant_name])
+      @receipt.update receipt_params.except(:merchant, :merchant_name).merge(merchant: @merchant)
     else
-      raise @receipt.errors.inspect
+      @receipt.update receipt_params.except(:merchant, :merchant_name) 
     end
+
+      redirect_to edit_receipt_path(@receipt.id)
 
   end
 
