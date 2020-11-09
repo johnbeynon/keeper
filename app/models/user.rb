@@ -17,9 +17,13 @@ class User < ApplicationRecord
     end
   end
 
+  def default_tray
+    trays.where(default: true).first
+  end
+
   private
   def create_tray
-    permissions.create(access:'readwrite', tray: Tray.create(name: 'Default'))
+    permissions.create(access:'readwrite', tray: Tray.create(name: 'Default', default: true))
   end
 
 end
