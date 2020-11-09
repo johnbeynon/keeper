@@ -3,7 +3,7 @@ class Receipt < ApplicationRecord
 
   belongs_to :creator, class_name: 'User', foreign_key: 'created_by'
   belongs_to :tray
-  belongs_to :merchant 
+  belongs_to :merchant, optional: true 
 
   has_many_attached :images
   
