@@ -6,7 +6,7 @@ class ForwardsMailbox < ApplicationMailbox
       logger.info("Creator: #{creator.email}")
       @receipt = Receipt.new(
         transaction_date: Date.today, 
-        tray: creator.trays.first, 
+        tray: creator.default_tray, 
         creator: creator,
         images: attachments.map{ |a| a[:blob] }
       )
