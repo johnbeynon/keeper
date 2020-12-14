@@ -5,7 +5,7 @@ class Receipt < ApplicationRecord
   belongs_to :tray
   belongs_to :merchant, optional: true 
 
-  has_many_attached :images
+  has_many_attached :images, service: :amazon
   
   after_create :broadcast
 
