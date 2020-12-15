@@ -28,10 +28,10 @@
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
           <%= link_to "All", receipts_path, class: 'dropdown-item' %>
           <% current_user.trays.each do |tray| %>
-            <%= link_to tray.name, receipts_path(tray_id: tray.id), class: 'dropdown-item' %>
+            <%= link_to "#{tray.name} (2)", receipts_path(tray_id: tray.id), class: 'dropdown-item' %>
           <% end %>
           <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="#">Create new tray</a>
+          <%= link_to "Create new tray", new_tray_path, class: 'dropdown-item' %>
         </div>
       </li>
       <li class="nav-item dropdown">
@@ -39,6 +39,8 @@
           <%= current_user.user_name %>
         </a>
         <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+        <%= link_to "Trays", trays_path, class: 'dropdown-item' %>
+        <div class="dropdown-divider"></div>
           <a class="dropdown-item" data-method="delete" href="/logout">Logout</a>
         </div>
       </li>

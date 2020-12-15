@@ -4,7 +4,7 @@
 <ul>
 <% @permissions.each do |permission| %>
 <li>
-  <%= link_to permission.tray.name, tray_path(permission.tray.id) %> <%=  permission.access %>
+  <%= link_to permission.tray.name, edit_tray_path(permission.tray.id) %> <%=  permission.access %>
 </li>
 <% end %>
 </ul>
