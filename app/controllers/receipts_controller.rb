@@ -9,6 +9,7 @@ class ReceiptsController < ApplicationController
     else
       @receipts = current_user.receipts.kept
     end
+    @receipts = @receipts.order("transaction_date DESC")
   end
 
   def new
