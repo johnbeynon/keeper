@@ -12,7 +12,10 @@ RUN apk --no-cache add --virtual build-dependencies \
   # JavaScript
   yarn \
   # FFI Bindings in ruby (Run C Commands)
-  libffi-dev
+  libffi-dev \
+  # WSL stuff
+  libgcc \
+  libstdc++
 
 RUN apk --no-cache add \
   # ActiveStorage file inspection
