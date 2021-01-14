@@ -66,7 +66,6 @@ RUN mkdir -p /usr/src/app \
   && mkdir -p /usr/src/app/public/packs \
   && mkdir -p /usr/src/app/tmp/cache \
   && mkdir -p $YARN_CACHE_FOLDER \
-  && mkdir -p $BOOTSNAP_CACHE_DIR \
   && chown -R appuser:appgroup /usr/src/app \
   && chown -R appuser:appgroup $BUNDLE_PATH \
   && chown -R appuser:appgroup $YARN_CACHE_FOLDER
