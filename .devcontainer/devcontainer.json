@@ -1,0 +1,9 @@
+{
+	"name": "keeper",
+	"dockerComposeFile": "docker-compose.yml",
+	"service": "web",
+	"workspaceFolder": "/keeper",
+	"forwardPorts": [
+		5000
+	]
+}
