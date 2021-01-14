@@ -15,8 +15,8 @@ version: '3.4'
 x-app: &app
   image: rails-app:0.3.0
   build:
-    context: .
-    dockerfile: Dockerfile
+    context: ..
+    dockerfile: .devcontainer/Dockerfile
     # target: development
   tmpfs:
     - /tmp
