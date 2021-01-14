@@ -14,7 +14,6 @@ version: '3.4'
 
 x-app: &app
   image: rails-app:0.3.0
-  mem_limit: 512m
   build:
     context: .
     dockerfile: Dockerfile
@@ -37,15 +36,12 @@ x-app: &app
     - yarn_cache:/usr/src/yarn:delegated
     - letter_opener:/usr/src/app/tmp/letter_opener:delegated
   depends_on:
-    postgres:
-      condition: service_healthy
-    redis:
-      condition: service_started
+    - postgres
+    - redis
 
 services:
   postgres:
     image: postgres:12.3-alpine
-    mem_limit: 64m
     volumes:
       - postgresql:/var/lib/postgresql/data:delegated
     ports:
@@ -65,7 +61,6 @@ services:
 
   redis:
     image: redis:4.0.14-alpine
-    mem_limit: 64m
     volumes:
       - redis:/data:delegated
     ports:
