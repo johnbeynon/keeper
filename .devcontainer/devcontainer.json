@@ -2,6 +2,7 @@
 	"name": "keeper",
 	"dockerComposeFile": "docker-compose.yml",
 	"service": "web",
+	"workspaceFolder": "/usr/src/app",
 	"forwardPorts": [
 		5000
 	]
