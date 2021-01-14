@@ -42,7 +42,6 @@ RUN apk --no-cache add \
 FROM builder AS development
 
 # Set common ENVs
-ENV BOOTSNAP_CACHE_DIR /usr/src/bootsnap
 ENV YARN_CACHE_FOLDER /usr/src/yarn
 ENV EDITOR vim
 ENV LANG en_US.UTF-8
