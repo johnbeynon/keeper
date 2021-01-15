@@ -1,20 +1,19 @@
-FROM ruby:2.7.2-alpine AS builder
+FROM ruby:2.7.2 AS builder
 LABEL maintainer="Mike Rogers <me@mikerogers.io>"
 
-RUN apk --no-cache add --virtual build-dependencies \
-  build-base \
+RUN apt-get update && apt-get install -y \
+  build-essential \
   # Nokogiri Libraries
-  zlib-dev \
   libxml2-dev \
   libxslt-dev \
   # PG
-  postgresql-dev \
+  libpq-dev \
   # JavaScript
   yarn \
   # FFI Bindings in ruby (Run C Commands)
   libffi-dev
 
-RUN apk --no-cache add \
+RUN apt-get install -y \
   # ActiveStorage file inspection
   file \
   # Time zone data
@@ -26,7 +25,6 @@ RUN apk --no-cache add \
   # wkhtmltopdf \
   # Image Resizing
   imagemagick \
-  vips \
   # Nice to have
   bash \
   git \
@@ -51,12 +49,15 @@ ENV RAILS_LOG_TO_STDOUT enabled
 ENV HISTFILE /usr/src/app/log/.bash_history
 
 # Set build args. These let linux users not run into file permission problems
-ARG USER_ID=${USER_ID:-1000}
-ARG GROUP_ID=${GROUP_ID:-1000}
+# ARG USER_ID=${USER_ID:-1000}
+# ARG GROUP_ID=${GROUP_ID:-1000}
 
+ARG USERNAME=appuser
+ARG USER_UID=1000
+ARG USER_GID=$USER_UID
 # Add non-root user and group with alpine first available uid, 1000
-RUN addgroup -g $USER_ID -S appgroup \
-  && adduser -u $GROUP_ID -S appuser -G appgroup
+# RUN addgroup --group $USER_ID --system appgroup \
+#   && adduser -uid $GROUP_ID --system --group appgroup appuser
 
 # Install multiple gems at the same time
 RUN bundle config set jobs $(nproc)
@@ -68,11 +69,11 @@ RUN mkdir -p /usr/src/app \
   && mkdir -p /usr/src/app/tmp/cache \
   && mkdir -p $YARN_CACHE_FOLDER \
   && mkdir -p $BOOTSNAP_CACHE_DIR \
-  && chown -R appuser:appgroup /usr/src/app \
-  && chown -R appuser:appgroup $BUNDLE_PATH \
-  && chown -R appuser:appgroup $BOOTSNAP_CACHE_DIR \
-  && chown -R appuser:appgroup $YARN_CACHE_FOLDER
-WORKDIR /usr/src/app
+  # && chown -R appuser:appgroup /usr/src/app \
+  # && chown -R appuser:appgroup $BUNDLE_PATH \
+  # && chown -R appuser:appgroup $BOOTSNAP_CACHE_DIR \
+  # && chown -R appuser:appgroup $YARN_CACHE_FOLDER
+  WORKDIR /usr/src/app
 
 ENV PATH /usr/src/app/bin:$PATH
 
