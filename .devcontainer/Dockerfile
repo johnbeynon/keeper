@@ -64,6 +64,8 @@ ENV HISTFILE /usr/src/app/log/.bash_history
 # # Install multiple gems at the same time
 # RUN bundle config set jobs $(nproc)
 
+RUN mkdir -p /usr/src/app
+
 # # Create app directory in the conventional /usr/src/app
 # RUN mkdir -p /usr/src/app \
 #   && mkdir -p /usr/src/app/node_modules \
@@ -75,7 +77,7 @@ ENV HISTFILE /usr/src/app/log/.bash_history
 #   && chown -R appuser:appgroup $YARN_CACHE_FOLDER
 # WORKDIR /usr/src/app
 
-# ENV PATH /usr/src/app/bin:$PATH
+ENV PATH /usr/src/app/bin:$PATH
 
 # # Define the user running the container
 # USER appuser
