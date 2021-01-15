@@ -80,8 +80,8 @@ ENV HISTFILE /usr/src/app/log/.bash_history
 # # Define the user running the container
 # USER appuser
 
-EXPOSE 5000
-CMD ["rails", "server", "-b", "0.0.0.0", "-p", "5000"]
+# EXPOSE 5000
+# CMD ["rails", "server", "-b", "0.0.0.0", "-p", "5000"]
 
 # FROM development AS production
 
