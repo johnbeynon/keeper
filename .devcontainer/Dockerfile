@@ -1,42 +1,43 @@
 FROM ruby:2.7.2 AS builder
-LABEL maintainer="Mike Rogers <me@mikerogers.io>"
+RUN apt-get update -qq && apt-get upgrade -y
+RUN apt-get install -y build-essential nodejs && apt-get clean
 
-RUN apk --no-cache add --virtual build-dependencies \
-  build-base \
-  # Nokogiri Libraries
-  zlib-dev \
-  libxml2-dev \
-  libxslt-dev \
-  # PG
-  postgresql-dev \
-  # JavaScript
-  yarn \
-  # FFI Bindings in ruby (Run C Commands)
-  libffi-dev \
-  # WSL stuff
-  libgcc \
-  libstdc++
+# RUN apk --no-cache add --virtual build-dependencies \
+#   build-base \
+#   # Nokogiri Libraries
+#   zlib-dev \
+#   libxml2-dev \
+#   libxslt-dev \
+#   # PG
+#   postgresql-dev \
+#   # JavaScript
+#   yarn \
+#   # FFI Bindings in ruby (Run C Commands)
+#   libffi-dev \
+#   # WSL stuff
+#   libgcc \
+#   libstdc++
 
-RUN apk --no-cache add \
-  # ActiveStorage file inspection
-  file \
-  # Time zone data
-  tzdata \
-  # JavaScript
-  nodejs \
-  # HTML to PDF conversion
-  # ttf-ubuntu-font-family \
-  # wkhtmltopdf \
-  # Image Resizing
-  imagemagick \
-  vips \
-  # Nice to have
-  bash \
-  git \
-  # VIM is a handy editor for editing credentials
-  vim \
-  # Fixes watch file issues with things like HMR
-  libnotify-dev
+# RUN apk --no-cache add \
+#   # ActiveStorage file inspection
+#   file \
+#   # Time zone data
+#   tzdata \
+#   # JavaScript
+#   nodejs \
+#   # HTML to PDF conversion
+#   # ttf-ubuntu-font-family \
+#   # wkhtmltopdf \
+#   # Image Resizing
+#   imagemagick \
+#   vips \
+#   # Nice to have
+#   bash \
+#   git \
+#   # VIM is a handy editor for editing credentials
+#   vim \
+#   # Fixes watch file issues with things like HMR
+#   libnotify-dev
 
 # Install any extra dependencies via Aptfile - These are installed on Heroku
 # COPY Aptfile /usr/src/app/Aptfile
@@ -79,8 +80,8 @@ ENV HISTFILE /usr/src/app/log/.bash_history
 # # Define the user running the container
 # USER appuser
 
-# EXPOSE 5000
-# CMD ["rails", "server", "-b", "0.0.0.0", "-p", "5000"]
+EXPOSE 5000
+CMD ["rails", "server", "-b", "0.0.0.0", "-p", "5000"]
 
 # FROM development AS production
 
