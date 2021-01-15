@@ -1,6 +1,11 @@
 FROM ruby:2.7.2 AS builder
 RUN apt-get update -qq && apt-get upgrade -y
-RUN apt-get install -y build-essential nodejs && apt-get clean
+RUN apt-get install -y \
+  build-essential \
+  nodejs \
+  yarn \
+  libpq-dev \
+  && apt-get clean
 
 # RUN apk --no-cache add --virtual build-dependencies \
 #   build-base \
@@ -14,9 +19,6 @@ RUN apt-get install -y build-essential nodejs && apt-get clean
 #   yarn \
 #   # FFI Bindings in ruby (Run C Commands)
 #   libffi-dev \
-#   # WSL stuff
-#   libgcc \
-#   libstdc++
 
 # RUN apk --no-cache add \
 #   # ActiveStorage file inspection
