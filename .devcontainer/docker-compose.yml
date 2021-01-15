@@ -36,7 +36,7 @@ x-app: &app
   #   - postgres
   #   - redis
 
-# services:
+services:
 #   postgres:
 #     image: postgres:12.3-alpine
 #     volumes:
