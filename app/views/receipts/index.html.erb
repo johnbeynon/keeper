@@ -1,20 +1,7 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-<h2>
-<% if @tray.present? %>
-  <%= I18n.t 'receipts' %> > <%= @tray.name %>
-<% elsif @merchant.present? %>
-  <%= I18n.t 'receipts' %> > <%= @merchant.name %>
-<% else %>
-  All Receipts
-<% end %>
-</h2>
-<div class="btn-toolbar mb-2 mb-md-0">
-  <%= link_to "Add New Receipt", new_receipt_path, class: 'btn btn-primary btn-sm' %>
-</div>
-</div>
 
-<div class="row row-cols-1 row-cols-md-4" id="receipts">
+  <%= render HeaderComponent.new(title: 'All Receipts') %>
+
+
 <% @receipts.each do |receipt| %>
-  <%= render partial: "receipt", locals: {receipt: receipt} %>
+  <%= render ::ReceiptCard::Component.new(receipt: receipt) %>
 <% end %>
-</div>
