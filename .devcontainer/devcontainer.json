@@ -1,9 +1,36 @@
 {
-	"name": "keeper",
+	"name": "Keeper",
 	"dockerComposeFile": "docker-compose.yml",
-	"service": "web",
-	"workspaceFolder": "/usr/src/app",
+	"service": "app",
+	"workspaceFolder": "/workspace",
+	// Set *default* container specific settings.json values on container create.
+	"settings": {
+		"terminal.integrated.shell.linux": "/bin/bash",
+		"sqltools.connections": [
+			{
+				"name": "Container database",
+				"driver": "PostgreSQL",
+				"previewLimit": 50,
+				"server": "db",
+				"port": 5432,
+				"username": "postgres",
+				"password": "postgres",
+				"database": "keeper_development"
+			}
+		],
+	},
+	// Add the IDs of extensions you want to be installed when the container is created.
+	"extensions": [
+		"rebornix.Ruby",
+		"mtxr.sqltools",
+		"mtxr.sqltools-driver-pg"
+	],
+	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [
 		5000
-	]
+	],
+	// Use 'postCreateCommand' to run commands after the container is created.
+	"postCreateCommand": "bundle && rails db:create && rails db:migrate",
+	// Uncomment to connect as a non-root user. See https://aka.ms/vscode-remote/containers/non-root.
+	"remoteUser": "vscode",
 }
