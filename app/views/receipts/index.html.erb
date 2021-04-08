@@ -1,7 +1,9 @@
+<%= render HeaderComponent.new(title: 'All Receipts') %>
 
-  <%= render HeaderComponent.new(title: 'All Receipts') %>
-
-
-<% @receipts.each do |receipt| %>
-  <%= render ::ReceiptCard::Component.new(receipt: receipt) %>
+<% if @receipts.present? %>
+  <% @receipts.each do |receipt| %>
+    <%= render ::ReceiptCard::Component.new(receipt: receipt) %>
+  <% end %>
+<% else %>
+  You don't have any receipts yet. Why now add one?
 <% end %>
