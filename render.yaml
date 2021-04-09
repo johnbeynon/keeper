@@ -1,0 +1,19 @@
+databases:
+  - name: keeper
+    databaseName: keeper
+    user: keeper
+
+  - type: web
+    name: Keeper
+    env: ruby
+    buildCommand: "./bin/render-build.sh"
+    startCommand: "bundle exec puma -C config/puma.rb"
+    envVars:
+      - key: DATABASE_URL
+        fromDatabase:
+          name: keeper
+          property: connectionString
+      - key: REDIS_URL
+        value: redis://redis-3ocl:10000
+      - key: RAILS_MASTER_KEY
+        sync: false
