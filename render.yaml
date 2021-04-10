@@ -15,5 +15,5 @@ databases:
           property: connectionString
       - key: REDIS_URL
         value: redis://redis-3ocl:10000
-      - key: RAILS_MASTER_KEY
-        sync: false
+      - key: SECRET_KEY_BASE
+        generateValue: true
