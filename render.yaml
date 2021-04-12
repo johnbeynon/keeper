@@ -3,6 +3,7 @@ databases:
     databaseName: keeper
     user: keeper
 
+services:
   - type: web
     name: Keeper
     env: ruby
