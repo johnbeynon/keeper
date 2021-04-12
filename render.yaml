@@ -1,3 +1,4 @@
+previewsEnabled: true
 databases:
   - name: keeper
     databaseName: keeper
