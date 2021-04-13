@@ -6,7 +6,13 @@ databases:
 
 services:
   - type: web
-    name: Keeper
+    name: keeper-assets
+    env: static
+    buildCommand: bundle exec rails assets:precompile
+    staticPublishPath: ./public
+
+  - type: web
+    name: keeper
     env: ruby
     buildCommand: "./bin/render-build.sh"
     startCommand: "bundle exec puma -C config/puma.rb"
@@ -19,3 +25,7 @@ services:
         value: redis://redis-3ocl:10000
       - key: SECRET_KEY_BASE
         generateValue: true
+      - key: ASSETS_HOST
+        fromService:
+          name: keeper-assets
+          property: RENDER_EXTERNAL_HOSTNAME
