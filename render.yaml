@@ -14,7 +14,7 @@ services:
       - key: RAILS_ENV
         value: production
       - key: SECRET_KEY_BASE
-        generatedValue: true
+        generateValue: true
 
   - type: web
     name: keeper
