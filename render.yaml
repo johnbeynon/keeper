@@ -19,3 +19,5 @@ services:
         value: redis://redis-3ocl:10000
       - key: SECRET_KEY_BASE
         generateValue: true
+      - key: RAILS_ENV
+        value: production
