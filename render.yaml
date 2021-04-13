@@ -10,6 +10,11 @@ services:
     env: static
     buildCommand: bundle exec rails assets:precompile
     staticPublishPath: ./public
+    envVars:
+      - key: RAILS_ENV
+        value: production
+      - key: SECRET_KEY_BASE
+        generatedValue: true
 
   - type: web
     name: keeper
