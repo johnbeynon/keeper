@@ -15,6 +15,10 @@ services:
         value: production
       - key: SECRET_KEY_BASE
         generateValue: true
+      - key: PERMITTED_USERS
+        value: someone@email.com
+      - key: PERMITTED_SENDERS
+       value: someone@email.com
 
   - type: web
     name: keeper
@@ -32,7 +36,7 @@ services:
         value: redis://redis-3ocl:10000
       - key: SECRET_KEY_BASE
         generateValue: true
-      - key: ASSETS_HOST
+      - key: ASSET_HOST
         fromService:
           name: keeper-assets
           type: web
