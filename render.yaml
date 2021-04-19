@@ -6,17 +6,6 @@ databases:
 
 services:
   - type: web
-    name: keeper-assets
-    env: static
-    buildCommand: bundle exec rails assets:precompile
-    staticPublishPath: ./public
-    envVars:
-      - key: RAILS_ENV
-        value: production
-      - key: SECRET_KEY_BASE
-        generateValue: true
-
-  - type: web
     name: keeper
     env: ruby
     buildCommand: "./bin/render-build.sh"
@@ -32,11 +21,6 @@ services:
         value: redis://redis-3ocl:10000
       - key: SECRET_KEY_BASE
         generateValue: true
-      - key: ASSET_HOST
-        fromService:
-          name: keeper-assets
-          type: web
-          envVarKey: RENDER_EXTERNAL_HOSTNAME
       - key: PERMITTED_USERS
         value: someone@email.com
       - key: PERMITTED_SENDERS
