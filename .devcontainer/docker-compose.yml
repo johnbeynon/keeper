@@ -1,97 +1,40 @@
----
-# This is a set up for Rails 6, running a worker & webpack.
-# Gems are cached within a volume, which speeds up development when adding new gems.
-#
-## Usage:
-#
-# docker-compose build
-# docker-compose run --rm web bin/setup
-# docker-compose up
-#
-# Docker Compose 2.4 is for local development
-# https://www.heroku.com/podcasts/codeish/57-discussing-docker-containers-and-kubernetes-with-a-docker-captain - Source on that.
-version: '3.4'
-
-x-app: &app
-  image: rails-app:0.3.0
-  build:
-    context: ..
-    dockerfile: .devcontainer/Dockerfile
-    # target: development
-  env_file:
-    - .env.dev
-  environment:
-    REDIS_URL: redis://@redis:6379/1
-    DATABASE_URL: postgres://postgres:postgres@postgres:5432/
-    WEBPACKER_DEV_SERVER_HOST: webpacker
-  volumes:
-    - .:/usr/src/app:cached
-    - bundler:/usr/local/bundle:delegated
-    - rails_cache:/usr/src/app/tmp/cache:delegated
-    - packs:/usr/src/app/public/packs:delegated
-    - node_modules:/usr/src/app/node_modules:delegated
-    - yarn_cache:/usr/src/yarn:delegated
-    - letter_opener:/usr/src/app/tmp/letter_opener:delegated
-  # depends_on:
-  #   - postgres
-  #   - redis
-
-services:
-  postgres:
-    image: postgres:12.3-alpine
-    volumes:
-      - postgresql:/var/lib/postgresql/data:delegated
-    ports:
-      - "127.0.0.1:5432:5432"
-    environment:
-      PSQL_HISTFILE: /root/log/.psql_history
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    restart: on-failure
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 10s
-      timeout: 2s
-      retries: 10
-    logging:
-      driver: none
-
-  redis:
-    image: redis:4.0.14-alpine
-    volumes:
-      - redis:/data:delegated
-    ports:
-      - "127.0.0.1:6379:6379"
-    restart: on-failure
-    logging:
-      driver: none
-
-  web:
-    <<: *app
-    #command: bash -c "rm -rf /usr/src/app/tmp/pids/server.pid && bundle exec rails s -p 5000 -b '0.0.0.0'"
-    command: sleep infinity
-    ports:
-      - "127.0.0.1:5000:5000"
-
-  # worker:
-  #   <<: *app
-  #   command: bundle exec sidekiq -C config/sidekiq.yml
-
-  # webpacker:
-  #   <<: *app
-  #   mem_limit: 256m
-  #   command: ./bin/webpack-dev-server
-  #   environment:
-  #     WEBPACKER_DEV_SERVER_HOST: 0.0.0.0
-  #   ports:
-  #     - "127.0.0.1:3035:3035"
+version: "3"
 
 volumes:
-  postgresql:
-  redis:
-  bundler:
-  rails_cache:
-  packs:
-  node_modules:
-  yarn_cache:
-  letter_opener:
+  postgres_data:
+
+services:
+  app:
+    # See https://aka.ms/vscode-remote/containers/non-root for details.
+    user: vscode
+
+    build:
+      context: ..
+      dockerfile: .devcontainer/Dockerfile
+      args:
+        # Update 'VARIANT' to pick a Ruby version: 2, 2.7, 2.6, 2.5
+        VARIANT: 2.7
+        USER_UID: 1000
+        USER_GID: 1000
+        NODE_VERSION: lts/*
+
+    volumes:
+      - ..:/workspace:cached
+      - $HOME/.ssh/:/home/vscode/.ssh/ # Mount the ssh folder to authenticate with github
+
+    # Overrides default command so things don't shut down after the process ends.
+    command: sleep infinity
+
+    links:
+      - db
+
+  db:
+    image: postgres
+    restart: unless-stopped
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
