@@ -15,10 +15,6 @@ services:
         value: production
       - key: SECRET_KEY_BASE
         generateValue: true
-      - key: PERMITTED_USERS
-        value: someone@email.com
-      - key: PERMITTED_SENDERS
-       value: someone@email.com
 
   - type: web
     name: keeper
@@ -41,3 +37,7 @@ services:
           name: keeper-assets
           type: web
           envVarKey: RENDER_EXTERNAL_HOSTNAME
+      - key: PERMITTED_USERS
+        value: someone@email.com
+      - key: PERMITTED_SENDERS
+        value: someone@email.com
