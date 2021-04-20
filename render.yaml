@@ -27,3 +27,5 @@ services:
         value: someone@email.com
       - key: TEST_VAR
         value: atestvalue
+      - key: ANOTHER_VAR
+        value: anothervar
