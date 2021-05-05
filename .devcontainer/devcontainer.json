@@ -24,7 +24,8 @@
 		"rebornix.Ruby",
 		"mtxr.sqltools",
 		"mtxr.sqltools-driver-pg",
-		"connorshea.vscode-ruby-test-adapter"
+		"connorshea.vscode-ruby-test-adapter",
+		"bradlc.vscode-tailwindcss"
 	],
 	// Use 'forwardPorts' to make a list of ports inside the container available locally.
 	"forwardPorts": [

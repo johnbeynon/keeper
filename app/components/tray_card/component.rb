@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-module NavBar
+module TrayCard
   class Component < ApplicationComponent
-    def initialize(current_user:)
-      @current_user = current_user
+    def initialize(permission:)
+      @permission = permission
     end
   end
 end

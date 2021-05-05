@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.7/holder.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -14,7 +14,7 @@
 
   <body>
     <div>
-      <%= render ::NavBar::Component.new() %>
+      <%= render ::NavBar::Component.new(current_user: current_user) %>
       <main>
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
           <%= yield %>
