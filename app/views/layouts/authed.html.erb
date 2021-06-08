@@ -5,7 +5,7 @@
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= stylesheet_pack_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/holder/2.9.7/holder.min.js"></script>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
@@ -13,51 +13,13 @@
   </head>
 
   <body>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
-   <%= link_to t('keeper.appname'), root_path, class: 'navbar-brand' %>
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-    <span class="navbar-toggler-icon"></span>
-  </button>
-
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          Trays
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-          <%= link_to "All", receipts_path, class: 'dropdown-item' %>
-          <% current_user.trays.each do |tray| %>
-            <%= link_to "#{tray.name} (2)", receipts_path(tray_id: tray.id), class: 'dropdown-item' %>
-          <% end %>
-          <div class="dropdown-divider"></div>
-          <%= link_to "Create new tray", new_tray_path, class: 'dropdown-item' %>
+    <div class="bg-gray-100">
+      <%= render ::NavBar::Component.new(current_user: current_user) %>
+      <main>
+        <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+          <%= yield %>
         </div>
-      </li>
-      <li class="nav-item dropdown">
-        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-          <%= current_user.user_name %>
-        </a>
-        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-        <%= link_to "Trays", trays_path, class: 'dropdown-item' %>
-        <div class="dropdown-divider"></div>
-          <a class="dropdown-item" data-method="delete" href="/logout">Logout</a>
-        </div>
-      </li>
-    </ul>
-    <form class="form-inline my-2 my-lg-0">
-      <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-    </form>
-  </div>
-</nav>
-
-<div class="container">
-<%= yield %>
-
-</div>
-
-    
-    
+      </main>
+    </div>
   </body>
 </html>

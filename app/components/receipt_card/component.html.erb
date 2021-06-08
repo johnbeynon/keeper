@@ -1,0 +1,33 @@
+ <div class="rounded overflow-hidden shadow-lg">
+    <% if @receipt.images.first && @receipt.images.first.variable? %>
+      <%= image_tag @receipt.images.first.variant(resize: "400x400^"), class: 'w-full'  %>
+    <% elsif @receipt.images.first && @receipt.images.first.previewable? %>
+      <%= image_tag @receipt.images.first.preview(resize_to_limit: [200, 200]), class: 'w-full'  %>
+    <% end %>
+      <div class="px-6 py-4">
+        <div class="font-bold text-xl mb-2">
+         <% if @receipt.merchant %>
+        <%= link_to @receipt.merchant.name, receipts_path(merchant_id: @receipt.merchant_id) %>
+      <% else %>
+        Unknown Merchant
+       <% end %>
+        </div>
+        <p class="text-gray-700 text-base">
+           <small class="text-muted" title="<%= @receipt.date %>"><%= time_ago_in_words(@receipt.date) %> ago</small>
+ 
+        <%= number_to_currency(@receipt.amount) %> 
+
+         
+       </p>
+      </div>
+      <div class="px-6 pt-4 pb-2">
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#photography</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#travel</span>
+        <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#winter</span>
+      </div>
+      <div class="p-4 flex items-center text-sm text-gray-600">
+        <%= link_to edit_receipt_path(@receipt.id) do %>
+          <span class="material-icons">edit</span>
+        <% end %>
+      </div>
+    </div>

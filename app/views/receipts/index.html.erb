@@ -1,20 +1,14 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pb-2 mb-3 border-bottom">
-<h2>
-<% if @tray.present? %>
-  <%= I18n.t 'receipts' %> > <%= @tray.name %>
-<% elsif @merchant.present? %>
-  <%= I18n.t 'receipts' %> > <%= @merchant.name %>
-<% else %>
-  All Receipts
-<% end %>
-</h2>
-<div class="btn-toolbar mb-2 mb-md-0">
-  <%= link_to "Add New Receipt", new_receipt_path, class: 'btn btn-primary btn-sm' %>
-</div>
-</div>
+<%= render HeaderComponent.new(title: 'All Receipts') %>
 
-<div class="row row-cols-1 row-cols-md-4" id="receipts">
-<% @receipts.each do |receipt| %>
-  <%= render partial: "receipt", locals: {receipt: receipt} %>
+
+<% if @receipts.present? %>
+ <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+ 
+  <% @receipts.each do |receipt| %>
+    <%= render ::ReceiptCard::Component.new(receipt: receipt) %>
+  <% end %>
+  
+  </div>
+<% else %>
+  You don't have any receipts yet. Why now add one?
 <% end %>
-</div>
