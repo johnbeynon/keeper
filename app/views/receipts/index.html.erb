@@ -1,9 +1,14 @@
 <%= render HeaderComponent.new(title: 'All Receipts') %>
 
+
 <% if @receipts.present? %>
+ <div class="p-10 grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 lg:grid-cols-3 xl:grid-cols-3 gap-5">
+ 
   <% @receipts.each do |receipt| %>
     <%= render ::ReceiptCard::Component.new(receipt: receipt) %>
   <% end %>
+  
+  </div>
 <% else %>
   You don't have any receipts yet. Why now add one?
 <% end %>

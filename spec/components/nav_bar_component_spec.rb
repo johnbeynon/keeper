@@ -1,10 +1,11 @@
-# require "test_helper"
+require "rails_helper"
 
-# class NavBarComponentTest < ViewComponent::TestCase
-#   def test_component_renders_something_useful
-#     # assert_equal(
-#     #   %(<span>Hello, components!</span>),
-#     #   render_inline(NavBarComponent.new(message: "Hello, components!")).css("span").to_html
-#     # )
-#   end
-# end
+RSpec.describe NavBar, type: :component do
+  it "renders component" do
+    # render_inline(described_class.new(title: "Dashboard"))
+
+    # # expect(rendered_component).to have_css "span[title='my title']", text: "Hello, World!"
+    # # or, to just assert against the text
+    # expect(rendered_component).to have_text "Dashboard"
+  end
+end
