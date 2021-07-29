@@ -36,6 +36,8 @@ Dependencies:
 
 You'll need to configure a Google project and an Oauth client via https://console.developers.google.com/. Oauth is configured from the Credentials option on the left menu. From the 'Create credentials' button choose 'Oauth client ID' and choose web application. Use `http://localhost:5000/auth/google_oauth2/callback` as the authorised redirect URI. NOTE: Enter the callback URL and make sure you click the save button (that caught me out). Create a second set of credentials for production using the relevant callback URL for your production environment. Set the client ID and client secret in `GOOGLE_CLIENT_ID` and `GOOGLE_CLIENT_SECRET` in your `.env` file.
 
+test
+
 ## Receipts via email
 
 Running locally you can send an email to the app by visiting `http://localhost:5000/rails/conductor/action_mailbox/inbound_emails`
